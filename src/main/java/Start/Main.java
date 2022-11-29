@@ -21,7 +21,7 @@ public class Main {
         Employee emp6 = new OrdinaryWorker("Viko", "Krojak", PositionList.WORKER.toString(),
                 29,5000);
 
-        DataBase db = new DataBase();
+        DataBase<Employee> db = new DataBase<>();
 
         Service service = new Service();
         service.addEmployee(db, emp1);
@@ -34,11 +34,11 @@ public class Main {
         db.showDataBase();
         System.out.println("Count of list: " + service.getSizeOfList(db));
 
-//        service.editPosition(db, emp1);
-//        service.editPosition(db, emp2);
-//
-//        db.showDataBase();
-//        System.out.println("Count of list: " + service.getSizeOfList(db));
+        service.editPosition(db, emp1);
+        service.editPosition(db, emp2);
+
+        db.showDataBase();
+        System.out.println("Count of list: " + service.getSizeOfList(db));
 
         service.removeEmployee(db, emp5);
         db.showDataBase();

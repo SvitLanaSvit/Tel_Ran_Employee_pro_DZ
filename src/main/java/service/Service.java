@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Service {
 
-    public void editPosition(DataBase db, Employee employee){
+    public void editPosition(DataBase<Employee> db, Employee employee){
         List<Employee> employees = db.getEmployeeList();
         if (employees != null){
             for (Employee model : employees) {
@@ -51,12 +51,12 @@ public class Service {
         }
     }
 
-    public void addEmployee(DataBase db, Employee employee){
+    public void addEmployee(DataBase<Employee> db, Employee employee){
         List<Employee> employees = db.getEmployeeList();
         employees.add(employee);
     }
 
-    public void removeEmployee(DataBase db, Employee employee){
+    public void removeEmployee(DataBase<Employee> db, Employee employee){
         List<Employee> employees = db.getEmployeeList();
         if(employees != null){
             employees.remove(employee);
@@ -67,13 +67,13 @@ public class Service {
         }
     }
 
-    public int getSizeOfList(DataBase db){
+    public int getSizeOfList(DataBase<Employee> db){
         List<Employee> employees = db.getEmployeeList();
         int length = employees.size();
         return length;
     }
 
-    public void getIndexOfEmployee(DataBase db, Employee employee){
+    public void getIndexOfEmployee(DataBase<Employee> db, Employee employee){
         List<Employee> employees = db.getEmployeeList();
         if(employees != null){
             System.out.println("\nThe index of employee " + employee.getName() + " " + employee.getSurname() +
@@ -83,7 +83,7 @@ public class Service {
             System.out.println("\nThe List of employees is empty.\n");
     }
 
-    public List<Employee> sortCollections(DataBase db){
+    public List<Employee> sortCollections(DataBase<Employee> db){
         List<Employee> employees = db.getEmployeeList();
         if(employees.size() > 0){
             Collections.sort(employees);

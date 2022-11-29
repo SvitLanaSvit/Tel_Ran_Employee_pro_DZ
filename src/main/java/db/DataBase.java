@@ -5,14 +5,14 @@ import model.Employee;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataBase {
-    private List<Employee> employeeList;
+public class DataBase<T extends Employee> {
+    private List<T> employeeList;
 
     public DataBase(){
         employeeList = new ArrayList<>(200);
     }
 
-    public List<Employee> getEmployeeList() {
+    public List<T> getEmployeeList() {
         return employeeList;
     }
 
