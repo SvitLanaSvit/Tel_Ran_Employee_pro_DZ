@@ -1,3 +1,3 @@
 # Employee
 ## extends, implements
-## Comparable<Employee>
+## Comparable\<Employee\>
