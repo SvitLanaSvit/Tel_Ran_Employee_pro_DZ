@@ -1,7 +1,13 @@
 package model;
 
-import java.util.Objects;
+import interfaces.Controling;
+import interfaces.Managementing;
+import interfaces.Working;
+import lombok.Setter;
 
+import java.util.Locale;
+import java.util.Objects;
+@Setter
 public class Employee implements Managementing, Controling, Working, Comparable<Employee> {
     private String name;
     private String surname;
@@ -82,7 +88,7 @@ public class Employee implements Managementing, Controling, Working, Comparable<
                 "\nName of employee:\t\t" + name +
                 "\nSurname of employee:\t" + surname +
                 "\nAge:\t\t\t\t\t" + age +
-                "\nSalary:\t\t\t\t\t" + salary +
+                "\nSalary:\t\t\t\t\t" + String.format(Locale.FRANCE,"%,.2f",salary) +
                 "\n--------------------------------------------";
     }
 

@@ -3,6 +3,7 @@ package Start;
 import db.DataBase;
 import model.*;
 import service.Service;
+import util.Generator;
 
 import java.util.Collections;
 
@@ -30,15 +31,18 @@ public class Main {
         service.addEmployee(db, emp4);
         service.addEmployee(db, emp5);
         service.addEmployee(db, emp6);
+        service.addEmployee(db, Generator.makeTopWorker());
+        service.addEmployee(db, Generator.makeMiddleWorker());
+        service.addEmployee(db, Generator.makeOrdinaryWorker());
 
         db.showDataBase();
         System.out.println("Count of list: " + service.getSizeOfList(db));
 
-        service.editPosition(db, emp1);
-        service.editPosition(db, emp2);
-
-        db.showDataBase();
-        System.out.println("Count of list: " + service.getSizeOfList(db));
+//        service.editPosition(db, emp1);
+//        service.editPosition(db, emp2);
+//
+//        db.showDataBase();
+//        System.out.println("Count of list: " + service.getSizeOfList(db));
 
         service.removeEmployee(db, emp5);
         db.showDataBase();
