@@ -5,8 +5,6 @@ import model.*;
 import service.Service;
 import util.Generator;
 
-import java.util.Collections;
-
 public class Main {
     public static void main(String[] args) {
         Employee emp1 = new TopWorker("Petro", "Vijchenko", PositionList.DIRECTOR.toString(),
@@ -22,35 +20,52 @@ public class Main {
         Employee emp6 = new OrdinaryWorker("Viko", "Krojak", PositionList.WORKER.toString(),
                 29,5000);
 
-        DataBase<Employee> db = new DataBase<>();
+        //ArrayList
+        DataBase<Employee> dbList = new DataBase<>();
 
         Service service = new Service();
-        service.addEmployee(db, emp1);
-        service.addEmployee(db, emp2);
-        service.addEmployee(db, emp3);
-        service.addEmployee(db, emp4);
-        service.addEmployee(db, emp5);
-        service.addEmployee(db, emp6);
-        service.addEmployee(db, Generator.makeTopWorker());
-        service.addEmployee(db, Generator.makeMiddleWorker());
-        service.addEmployee(db, Generator.makeOrdinaryWorker());
+        service.addEmployeeToList(dbList, emp1);
+        service.addEmployeeToList(dbList, emp2);
+        service.addEmployeeToList(dbList, emp3);
+        service.addEmployeeToList(dbList, emp4);
+        service.addEmployeeToList(dbList, emp5);
+        service.addEmployeeToList(dbList, emp6);
+        service.addEmployeeToList(dbList, Generator.makeTopWorker());
+        service.addEmployeeToList(dbList, Generator.makeMiddleWorker());
+        service.addEmployeeToList(dbList, Generator.makeOrdinaryWorker());
 
-        db.showDataBase();
-        System.out.println("Count of list: " + service.getSizeOfList(db));
+        dbList.showDataBaseList();
+        System.out.println("Count of list: " + service.getSizeOfList(dbList));
 
 //        service.editPosition(db, emp1);
 //        service.editPosition(db, emp2);
-//
-//        db.showDataBase();
-//        System.out.println("Count of list: " + service.getSizeOfList(db));
 
-        service.removeEmployee(db, emp5);
-        db.showDataBase();
-        System.out.println("Count of list: " + service.getSizeOfList(db));
+        service.removeEmployeeFromList(dbList, emp5);
+        service.getIndexOfEmployeeFromList(dbList,emp6);
+        service.sortCollectionsList(dbList);
+        dbList.showDataBaseList();
 
-        service.getIndexOfEmployee(db,emp6);
+        //TreeSet
+        System.out.println("------------------TREESET-------------------");
+        DataBase<Employee> dbTreeSet = new DataBase<>();
+        service.addEmployeeToTreeSet(dbTreeSet, emp1);
+        service.addEmployeeToTreeSet(dbTreeSet, emp2);
+        service.addEmployeeToTreeSet(dbTreeSet, emp3);
+        service.addEmployeeToTreeSet(dbTreeSet, emp4);
+        service.addEmployeeToTreeSet(dbTreeSet, emp5);
+        service.addEmployeeToTreeSet(dbTreeSet, emp6);
 
-        service.sortCollections(db);
-        db.showDataBase();
+        dbTreeSet.showDataBaseTreeSet();
+        System.out.println("Count of TreeSet: " + service.getSizeOfTreeSet(dbTreeSet) + "\n");
+
+//        service.editPositionInTreeSet(dbTreeSet, emp1);
+//        dbTreeSet.showDataBaseTreeSet();
+
+        service.removeEmployeeFromTreeSet(dbTreeSet, emp1);
+
+        service.getFirstEmployeeFromTreeSet(dbTreeSet);
+        service.getLastEmployeeFromTreeSet(dbTreeSet);
+        service.getRemoveFirstEmployeeFromTreeSet(dbTreeSet);
+        service.getRemoveLastEmployeeFromTreeSet(dbTreeSet);
     }
 }
