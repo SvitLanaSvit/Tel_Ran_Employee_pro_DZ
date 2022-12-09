@@ -4,10 +4,7 @@ import db.DataBase;
 import model.Employee;
 import model.PositionList;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Service {
 
@@ -62,8 +59,8 @@ public class Service {
         System.out.println("--------------------REMOVE---------------------");
         List<Employee> employees = db.getEmployeeList();
         if(employees.size() != 0){
-            employees.remove(employee);
             System.out.println("\n" + employee.getName() + " " + employee.getSurname() + " has deleted.\n");
+            employees.remove(employee);
             db.showDataBaseList();
             System.out.println("Count of list: " + getSizeOfList(db));
         }
@@ -144,8 +141,8 @@ public class Service {
         System.out.println("--------------------REMOVE---------------------");
         TreeSet<Employee> employees = db.getEmployeeTreeSet();
         if(employees != null){
-            employees.remove(employee);
             System.out.println("\n" + employee.getName() + " " + employee.getSurname() + " has deleted.\n");
+            employees.remove(employee);
             db.showDataBaseTreeSet();
             System.out.println("Count of TreeSet: " + getSizeOfTreeSet(db) + "\n");
         }
@@ -176,7 +173,7 @@ public class Service {
     }
     public void getRemoveFirstEmployeeFromTreeSet(DataBase<Employee> db){
         TreeSet<Employee> employees = db.getEmployeeTreeSet();
-        if(employees != null){
+        if(employees.size() != 0){
             System.out.println("The first employee with remove from TreeSet:\n" + employees.pollFirst());
         }
         else
@@ -191,5 +188,83 @@ public class Service {
         else
             System.out.println("The TreeSet of employees is empty.\n");
         System.out.println("Count of TreeSet: " + getSizeOfTreeSet(db) + "\n");
+    }
+
+    //Service HashMap
+    public void editPositionInHashMap(DataBase<Employee> db, Integer key){
+        System.out.println("--------------------EDIT---------------------");
+        HashMap<Integer, Employee> employees = db.getEmployeeHashMap();
+
+        if (!employees.isEmpty()){
+            for (Map.Entry<Integer, Employee> e : employees.entrySet()) {
+                if (employees.containsKey(key)) {
+                    System.out.println("\nFor change position for " +
+                            e.getValue().getName() + " " + e.getValue().getSurname() + " choose case:" +
+                            "\n\t1.DIRECTOR" +
+                            "\n\t2.MANAGER" +
+                            "\n\t3.ENGINEER" +
+                            "\n\t4.CONSTRUCTOR" +
+                            "\n\t5.ACCOUNTANT" +
+                            "\n\t6.WORKER");
+                    Scanner scanner = new Scanner(System.in);
+                    System.out.print("\nEnter number of case: ");
+                    int number = scanner.nextInt();
+                    String str = "";
+                    if (number >= 1 && number <= 6) {
+                        switch (number) {
+                            case 1 -> str = PositionList.DIRECTOR.toString();
+                            case 2 -> str = PositionList.MANAGER.toString();
+                            case 3 -> str = PositionList.ENGINEER.toString();
+                            case 4 -> str = PositionList.CONSTRUCTOR.toString();
+                            case 5 -> str = PositionList.ACCOUNTANT.toString();
+                            case 6 -> str = PositionList.WORKER.toString();
+                        }
+                        e.getValue().setPosition(str);
+                        db.showDataBaseHashMap();
+                        break;
+                    }
+                    else{
+                        System.out.println("The choose is wrong!");
+                    }
+                }
+            }
+        }
+        else{
+            System.out.println("The List of employees is empty.");
+        }
+    }
+    public void addEmployeeToHashMap(DataBase<Employee> db, Integer key, Employee employee){
+        HashMap<Integer, Employee> employees = db.getEmployeeHashMap();
+        employees.put(key, employee);
+    }
+    public void removeEmployeeFromHashMapByKey(DataBase<Employee> db, Integer key){
+        System.out.println("------------------REMOVE-------------------");
+        HashMap<Integer, Employee> employees = db.getEmployeeHashMap();
+        if(!employees.isEmpty()){
+            if(employees.containsKey(key)){
+                System.out.println("\n" + employees.get(key).getName() + " " + employees.get(key).getSurname()
+                        + " has deleted.\n");
+                employees.remove(key);
+                db.showDataBaseHashMap();
+                System.out.println("Count of HashMap: " + getSizeOfHashMap(db) + "\n");
+            }
+            else{
+                System.out.println("The key " + key + " is not exists by HashMap.");
+            }
+        }
+        else{
+            System.out.println("This HashMap of employees is empty.");
+        }
+    }
+    public void showKeys(DataBase<Employee> db){
+        HashMap<Integer, Employee> employees = db.getEmployeeHashMap();
+        System.out.println("---------------SHOW ALL KEY-----------------");
+        for (Map.Entry<Integer, Employee> e: employees.entrySet()) {
+            System.out.println(e.getKey() + " " + e.getValue().getName() + " " + e.getValue().getSurname());
+        }
+    }
+    public int getSizeOfHashMap(DataBase<Employee> db){
+        HashMap<Integer, Employee> employees = db.getEmployeeHashMap();
+        return employees.size();
     }
 }
