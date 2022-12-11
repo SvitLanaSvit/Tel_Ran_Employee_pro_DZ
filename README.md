@@ -3,3 +3,4 @@
 ## Comparable\<Employee\>
 ## ArrayList
 ## TreeSet
+## HashMap
