@@ -1,7 +1,6 @@
-package util;
+package generator;
 
 import com.github.javafaker.Faker;
-import lombok.experimental.UtilityClass;
 import model.*;
 
 import java.util.Random;

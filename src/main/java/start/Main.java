@@ -1,12 +1,9 @@
-package Start;
+package start;
 
 import db.DataBase;
 import model.*;
 import service.Service;
-import util.Generator;
-
-import java.util.HashMap;
-import java.util.UUID;
+import generator.Generator;
 
 public class Main {
     public static void main(String[] args) {
