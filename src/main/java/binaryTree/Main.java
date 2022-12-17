@@ -23,17 +23,17 @@ public class Main {
             node.insert(node, employees[i]);
         }
         node.inOrderTraversal(node);
-        System.out.println("------------------REMOVE----------------");
+        System.out.println("--------------------REMOVE------------------");
         System.out.println(node.remove(node, emp3));
-        System.out.println("------------------ORDER-----------------");
+        System.out.println("--------------------ORDER-------------------");
         node.inOrderTraversal(node);
-        System.out.println("------------------POST------------------");
+        System.out.println("--------------------POST--------------------");
         node.postOrderTraversal(node);
-        System.out.println("-----------------DIRECT-----------------");
+        System.out.println("-------------------DIRECT-------------------");
         node.directOrderTraversal(node);
-        System.out.println("-------------------MIN------------------");
-        node.getMin(node);
-        System.out.println("-------------------MAX------------------");
-        node.getMax(node);
+        System.out.println("---------------------MIN--------------------");
+        System.out.println(node.getMin(node).getValue());
+        System.out.println("---------------------MAX--------------------");
+        System.out.println(node.getMax(node).getValue());
     }
 }
